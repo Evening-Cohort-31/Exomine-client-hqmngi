@@ -7,7 +7,8 @@ export const setFacility = (facilityId) => {
     document.dispatchEvent(new CustomEvent("stateChanged"))
 }
 
-export const purchaseMineral = () => {
+export const purchaseMineral = (colonyId, mineralId) => {
+
     /*
         Does the chosen governor's colony already own some of this mineral?
             - If yes, what should happen?
