@@ -1,36 +1,42 @@
-**1. Create a drop down menu to select a governor**
+**Governors.js**
 
-Add event listener to governor names to display their colony and current mineral inventory
+import governors and colonies from database 
 
+Create a drop down menu to select a governor
 
-Function name: governorInventory()   Module: governors.js
-
-
-**2.Create a drop down menu to select a facility**
-
-Add event listener to display radio buttons for a chosen facility to display their mineral names and quantities
-
-
-Function name: showAvailableMinerals()   Module: facilities.js
+Add event listener/function to governor names to display their colony and current mineral inventory --- governorInventory()
 
 
 
-**3.Add event listener to radio buttons to add items to "Space Cart"**
+**facilities.js**
 
-(use an if statement to only allow items to be added to cart if governor, facility, AND mineral have all been selected)
+import facilities and minerals from database
 
+Create a drop down menu to select a facility 
 
-Funciton name(s): filterZeroMinerals()       Module: minerals.js
-		  addMineralsToCart()
-
-
-**API**
-
-Create "Space Cart" function to store mineral selections as transient state and then convert selection to permanent state when purchase mineral button is selected using POST method. (After the mineral is selected update the facility mineral inventory (-1) and colony mineral inventory (+1))
+Add event listener/function to facility names that will display radio buttons for a chosen facility to display their mineral names and quantities  --showAvailableMinerals()
 
 
-Function name: purchaseMineral()   Module: Transient State
 
 
+**minerals.js**
+
+import minerals and facilities from database
+
+Create a function to not display minerals with a quantity of 0 --- filterZeroMinerals() 
+
+
+
+
+
+**transientState,js**
+
+Add event listener to radio buttons to add items to "Space Cart" -- addMineralsToCart()
+
+addMineralsToCart() function will store mineral selections as transient state 
+
+Create a function to handle "purchase mineral" button that converts the transient state to permanent state--- purchaseMineral() 
+
+After the mineral is selected update the facility mineral inventory (-1) and colony mineral inventory (+1)
 
 
