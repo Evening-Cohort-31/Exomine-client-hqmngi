@@ -8,6 +8,7 @@ export const setFacility = (facilityId) => {
 }
 
 export const purchaseMineral = () => {
+
     /*
         Does the chosen governor's colony already own some of this mineral?
             - If yes, what should happen?
