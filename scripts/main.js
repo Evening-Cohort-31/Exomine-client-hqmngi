@@ -3,9 +3,11 @@
 // import {getColonies} from "./minerals.js"
 // import {inventoryFacilities} from "./colonies.js"
 // import {inventoryCart} from "./TransientState.js"
+import { facilityDropdown } from "./facilities.js"
 
+export const render = async () => {
 
-export const render = () => {
+    const facilityDropdownHTML = await facilityDropdown()
 
 
     const html = `
@@ -15,24 +17,25 @@ export const render = () => {
 
         <article class="selections">
             <section class="governor_selections">
-                ${getGovernors()}
+               
             </section>
         
             <section class="facility_selections">
-                ${getFacilities()}
+                Choose a facility...
+                ${facilityDropdownHTML}
             </section>
         </article>
         
         <article class="colony_selections">
-                ${getColonies()}
+               
         </article>
         
         <article class="facilities_inventory">
-                ${inventoryFacilities()}
+               
         </article>
         
         <article class="cart_inventory">
-                ${inventoryCart()}
+              
         </article> 
     `
 
