@@ -25,45 +25,11 @@ export const setMineral = (mineralId) => {
 }
 
 
-export const getState = () => ({ ...state })
 
 
 
 
 
-export const purchaseMineral = (colonyMinerals, facilityMinerals) => {
+// export const purchaseMineral = (colonyMinerals, facilityMinerals) => {
     
-    const { selectedGovernor, selectedFacility, selectedMineral } = state
-
-        // if (!selectedGovernor || !selectedFacility || !selectedMineral) return
-
-    // Find the governor's colony
-    const governorColony = getGovernors().find(gov => gov.id === selectedGovernor).colony_id
-
-    // Check if colony already has this mineral
-    let colonyMineral = colonyMinerals.find(
-        cm => cm.colony_id === governorColony && cm.mineral_id === selectedMineral
-    )
-
-    if (colonyMineral) {
-        // Use PUT: increment quantity
-        colonyMineral.quantity += 1
-    } else {
-        // Use POST: create a new entry for this colony/mineral
-        colonyMinerals.push({
-            colony_id: governorColony,
-            mineral_id: selectedMineral,
-            quantity: 1
-        })
-    }
-
-    // Reduce facility inventory by 1
-    const facilityMineral = facilityMinerals.find(
-        fm => fm.facility_id === selectedFacility && fm.mineral_id === selectedMineral
-    )
-    if (facilityMineral) {
-        facilityMineral.quantity -= 1
-    }
-
-    document.dispatchEvent(new CustomEvent("stateChanged"))
-}
+    

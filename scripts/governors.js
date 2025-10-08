@@ -5,7 +5,6 @@
 // if loop that starts with boolean for active?
 
 
-import { getGovernors } from "./database.js"
 import { setGovernor } from "./TransientState.js"
 
 //step 0: be able to handle governor selection changing by updating transient state
@@ -26,9 +25,10 @@ export const GovernorsDropdown = async () => {
     
     //build dropdown selection using database for array of options
     let html = govoptions
+        .filter(opt => opt.is_active === true)
         .map(opt => {
             return `<option value = "${opt.id}"> ${opt.name} </option>`
-        })
+            })
         .join("")
 
     return `<label for ="govSelect"> Select a governor: </label>

@@ -1,6 +1,4 @@
 import { GovernorsDropdown } from "./governors.js"
-import { getState } from "./TransientState.js"
-import { FacilitiesDropdown } from "./facilities.js"
 
 
 const container = document.querySelector("#container")
