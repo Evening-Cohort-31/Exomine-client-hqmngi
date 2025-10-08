@@ -87,8 +87,10 @@ const database = {
 // Exports
 // Also not sure if structuredClone makes sense anymore since we are actually touching the data. We will see.
 export const getColonies = () => structuredClone(database.colonies)
-export const getGovernors = () => structuredClone(database.governors)
-export const getFacilities = () => structuredClone(database.facilities)
+export const getGovernors = () => structuredClone(database.governors.filter(gov => gov.is_active))
+    //im deciding to this this now because I know i'll only ever want the active governors
+export const getFacilities = () => structuredClone(database.facilities.filter(fac => fac.is_active))
+    //same with these- i know i only want the active stuff so lets handle that up front
 export const getMinerals = () => structuredClone(database.minerals)
 export const getFacilityMinerals = () => structuredClone(database.mineral_quantities_at_facility)
 export const getColonyMinerals = () => structuredClone(database.mineral_quantities_at_colonies)

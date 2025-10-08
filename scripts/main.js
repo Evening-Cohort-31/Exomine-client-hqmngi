@@ -3,18 +3,37 @@ import { getState } from "./TransientState.js"
 import { FacilitiesDropdown } from "./facilities.js"
 
 
+const container = document.querySelector("#container")
 
-// Initial render
-document.getElementById("governors").innerHTML = GovernorsDropdown()
-FacilitiesDropdown()  // initial render
-
-document.addEventListener("stateChanged", () => {
-    const state = getState()
+const render = async () => {
+    const govHTML = await GovernorsDropdown()
     
+    container.innerHTML = `
+        ${govHTML}`
+}
 
-    // Re-render facilities dropdown if governor changes
-    FacilitiesDropdown()
-})
+render()
+
+
+
+//example asyc await from indiana jeans
+// import { JeanChoices } from "./JeanChoices.js"
+// import { LocationChoices } from "./LocationChoices.js"
+
+// const container = document.querySelector("#container")
+
+// const render = async () => {
+//     const jeansHTML = JeanChoices()
+//     const locationsHTML = await LocationChoices()
+    
+//     container.innerHTML = `
+//         ${jeansHTML}
+//         ${locationsHTML}
+//     `
+// }
+
+// render()
+
 
 // // Entry point: initial render
 // export const render = () => {
