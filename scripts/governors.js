@@ -7,15 +7,15 @@
 
 import { setGovernor } from "./TransientState.js"
 
-//step 0: be able to handle governor selection changing by updating transient state
+//step 1: be able to handle governor selection changing by updating transient state
 const handleGovChange = (changeEvent) => {
     if (changeEvent.target.name === "govSelect") {
         const govSelection = changeEvent.target.value
-        setGoverner(govSelection)
+        setGovernor(govSelection)
     }
 }
 
-//step 1: governors coming from database.js (not API)
+//step 2: build dropdown html
 export const GovernorsDropdown = async () => {
     //fetch data from api 
     const response = await fetch("http://localhost:8088/governors")
@@ -32,7 +32,7 @@ export const GovernorsDropdown = async () => {
         .join("")
 
     return `<label for ="govSelect"> Select a governor: </label>
-            <select id="govSelect"> name ="govSelect">
+            <select id="govSelect" name ="govSelect">
                 ${html}
             </select}`
 }

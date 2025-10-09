@@ -6,26 +6,26 @@
     { "id": 4, "name": "Ganymede", "active": false }
   ],
   "governors": [
-    { "id": 1, "name": "Aiko Tanaka", "is_active": true, "colony_id": 1 },
-    { "id": 2, "name": "Luis Ortega", "is_active": true, "colony_id": 1 },
-    { "id": 3, "name": "Sanaa El-Hassan", "is_active": true, "colony_id": 2 },
-    { "id": 4, "name": "Ravi Narang", "is_active": false, "colony_id": 2 },
-    { "id": 5, "name": "Ingrid Holm", "is_active": true, "colony_id": 3 },
-    { "id": 6, "name": "Mateo Alvarez", "is_active": true, "colony_id": 4 }
+    { "id": 1, "name": "Aiko Tanaka", "is_active": true, "colonieId": 1 },
+    { "id": 2, "name": "Luis Ortega", "is_active": true, "colonieId": 1 },
+    { "id": 3, "name": "Sanaa El-Hassan", "is_active": true, "colonieId": 2 },
+    { "id": 4, "name": "Ravi Narang", "is_active": false, "colonieId": 2 },
+    { "id": 5, "name": "Ingrid Holm", "is_active": true, "colonieId": 3 },
+    { "id": 6, "name": "Mateo Alvarez", "is_active": true, "colonieId": 4 }
   ],
   "facilities": [
-    { "id": 1, "name": "Ceres-Alpha", "is_active": true, "colonies_id": 1 },
-    { "id": 2, "name": "Ceres-Beta", "is_active": true, "colonies_id": 1 },
-    { "id": 3, "name": "Luna Mare Tranquillitatis", "is_active": true, "colonies_id": 1 },
-    { "id": 4, "name": "Phobos Yard", "is_active": true, "colonies_id": 2 },
-    { "id": 5, "name": "Deimos Outpost", "is_active": true, "colonies_id": 2 },
-    { "id": 6, "name": "Vesta-North", "is_active": true, "colonies_id": 2 },
-    { "id": 7, "name": "Europa Ridge-7", "is_active": true, "colonies_id": 3 },
-    { "id": 8, "name": "Pallas-Station", "is_active": false, "colonies_id": 3 },
-    { "id": 9, "name": "Callisto Forge", "is_active": true, "colonies_id": 3 },
-    { "id": 10, "name": "Ganymede Basin", "is_active": false, "colonies_id": 4 },
-    { "id": 11, "name": "Ganymede Deepworks", "is_active": true, "colonies_id": 4 },
-    { "id": 12, "name": "Io-Vulcan Forge", "is_active": true, "colonies_id": 4 }
+    { "id": 1, "name": "Ceres-Alpha", "is_active": true, "colonieId": 1 },
+    { "id": 2, "name": "Ceres-Beta", "is_active": true, "colonieId": 1 },
+    { "id": 3, "name": "Luna Mare Tranquillitatis", "is_active": true, "colonieId": 1 },
+    { "id": 4, "name": "Phobos Yard", "is_active": true, "colonieId": 2 },
+    { "id": 5, "name": "Deimos Outpost", "is_active": true, "colonieId": 2 },
+    { "id": 6, "name": "Vesta-North", "is_active": true, "colonieId": 2 },
+    { "id": 7, "name": "Europa Ridge-7", "is_active": true, "colonieId": 3 },
+    { "id": 8, "name": "Pallas-Station", "is_active": false, "colonieId": 3 },
+    { "id": 9, "name": "Callisto Forge", "is_active": true, "colonieId": 3 },
+    { "id": 10, "name": "Ganymede Basin", "is_active": false, "colonieId": 4 },
+    { "id": 11, "name": "Ganymede Deepworks", "is_active": true, "colonieId": 4 },
+    { "id": 12, "name": "Io-Vulcan Forge", "is_active": true, "colonieId": 4 }
   ],
   "minerals": [
     { "id": 1, "name": "Iron" },
