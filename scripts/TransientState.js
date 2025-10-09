@@ -18,16 +18,13 @@ export const setGovernor = async (governorId) => {
 export const setFacility = (facilityId) => {
     state.selectedFacility = facilityId
     state.selectedMineral = null // reset mineral when facility changes
-    //document.dispatchEvent(new CustomEvent("stateChanged"))
+    document.dispatchEvent(new CustomEvent("facilityStateChanged"))
 }
 
-export const purchaseMineral = () => {
 
-    /*
-        Does the chosen governor's colony already own some of this mineral?
-            - If yes, what should happen?
-            - If no, what should happen?
+// export const purchaseMineral = () => {}
 
+  
 // export const setMineral = (mineralId) => {
 //     state.selectedMineral = mineralId
 //     // document.dispatchEvent(new CustomEvent("stateChanged"))
@@ -40,5 +37,4 @@ export const getState = () => state
 
 
 // export const purchaseMineral = (colonyMinerals, facilityMinerals) => {
-    
     
