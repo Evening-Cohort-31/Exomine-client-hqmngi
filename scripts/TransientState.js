@@ -6,11 +6,13 @@ const state = {
     selectedMineral: null
 }
 
-export const setGovernor = (governorId) => {
-    state.selectedGovernor = governorId
+export const setGovernor = async (governorId) => {
+    const response = await fetch(`http://localhost:8088/governors/${governorId}`)
+    const governor = await response.json()
+    state.selectedGovernor = governor
     state.selectedFacility = null // reset facility and mineral when governor changes
     state.selectedMineral = null
-    // document.dispatchEvent(new CustomEvent("stateChanged"))
+    document.dispatchEvent(new CustomEvent("stateChanged"))
 }
 
 export const setFacility = (facilityId) => {
@@ -18,6 +20,7 @@ export const setFacility = (facilityId) => {
     state.selectedMineral = null // reset mineral when facility changes
     //document.dispatchEvent(new CustomEvent("stateChanged"))
 }
+
 
 // export const setMineral = (mineralId) => {
 //     state.selectedMineral = mineralId
