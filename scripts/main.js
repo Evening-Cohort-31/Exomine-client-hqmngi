@@ -1,17 +1,30 @@
+import { FacilitiesDropdown } from "./facilities.js"
 import { GovernorsDropdown } from "./governors.js"
+import { getState } from "./TransientState.js"
 
 
-const container = document.querySelector("#container")
+const govSection = document.querySelector("#governors")
+const facilitySection = document.querySelector("#facilities")
+
 
 const render = async () => {
     const govHTML = await GovernorsDropdown()
+    const facilitiesHTML = await FacilitiesDropdown()
     
-    container.innerHTML = `
-        ${govHTML}`
+    govSection.innerHTML = `
+        ${govHTML} `
+        
+    facilitySection.innerHTML = `
+        ${facilitiesHTML}`
 }
 
-render()
+// Re-render facilities only when state changes
+document.addEventListener("stateChanged", async () => {
+  const facilitiesHTML = await FacilitiesDropdown()
+  facilitySection.innerHTML = `${facilitiesHTML}`
+})
 
+render()
 
 
 //example asyc await from indiana jeans
