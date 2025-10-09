@@ -1,8 +1,10 @@
 import { FacilitiesDropdown } from "./facilities.js"
 import { GovernorsDropdown } from "./governors.js"
+import { displayMinerals } from "./minerals.js"
 
 const govSection = document.querySelector("#governors")
 const facilitySection = document.querySelector("#facilities")
+const mineralSelection = document.querySelector("#minerals")
 
 
 const render = async () => {
@@ -14,12 +16,23 @@ const render = async () => {
         
     facilitySection.innerHTML = `
         ${facilitiesHTML}`
+
+    
 }
 
 // Re-render facilities only when state changes
 document.addEventListener("stateChanged", async () => {
   const facilitiesHTML = await FacilitiesDropdown()
   facilitySection.innerHTML = `${facilitiesHTML}`
+
+// Render Minerals HTML only when facility is selected
+document.addEventListener("facilityStateChanged", async () => {
+  const mineralsHTML = await displayMinerals()
+  mineralSelection.innerHTML = `${mineralsHTML}`
+  render()
+    
+
+})  
 })
 
 render()

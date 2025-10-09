@@ -11,7 +11,7 @@ const handleFacilityChange = (changeEvent) => {
 //step 2: build dropdown html
 export const FacilitiesDropdown = async () => {
     //fetch data from api 
-    const response = await fetch("http://localhost:8088/facilities?_expand=colonie")
+    const response = await fetch("http://localhost:8088/facilities?_expand=colony")
     const facilityoptions = await response.json()
     //listen for a change event and if there is one, envoke handleGovChange to update transient state.
     document.addEventListener("change", handleFacilityChange)
@@ -21,7 +21,7 @@ export const FacilitiesDropdown = async () => {
     //facilityoptions.colonie.id
     let html = facilityoptions
         .filter(opt => opt.is_active === true)
-        .filter(opt => opt.colonieId === currentState.selectedGovernor?.colonieId)
+        .filter(opt => opt.colonyId === currentState.selectedGovernor?.colonyId)
         .map(opt => {
             return `<option value = "${opt.id}"> ${opt.name} </option>`
             })
