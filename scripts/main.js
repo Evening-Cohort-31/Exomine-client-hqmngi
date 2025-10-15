@@ -1,21 +1,37 @@
 import { FacilitiesDropdown } from "./facilities.js"
 import { GovernorsDropdown } from "./governors.js"
 import { displayMinerals } from "./minerals.js"
+import { orderButton } from "./spaceCart.js"
+import { colonyMinerals } from "./colonies.js"
+import { cartMinerals } from "./spaceCart.js"
 
 const govSection = document.querySelector("#governors")
 const facilitySection = document.querySelector("#facilities")
 const mineralSelection = document.querySelector("#minerals")
+const spaceCart = document.querySelector("#cart")
+const purchasedMinerals = document.querySelector("#colonyminerals")
+const cartMineralSelection = document.querySelector("#cartminerals")
 
 
 const render = async () => {
     const govHTML = await GovernorsDropdown()
     const facilitiesHTML = await FacilitiesDropdown()
+    const orderButtonHTML = await orderButton()
+    const colonyMineralsHTML = colonyMinerals()
     
     govSection.innerHTML = `
         ${govHTML} `
         
     facilitySection.innerHTML = `
         ${facilitiesHTML}`
+
+    
+    
+    spaceCart.innerHTML = `
+        ${orderButtonHTML}`
+    
+    purchasedMinerals.innerHTML = `
+        ${colonyMineralsHTML}`
 
     
 }
@@ -34,6 +50,13 @@ document.addEventListener("facilityStateChanged", async () => {
 
 })  
 })
+
+document.addEventListener("mineralAdded", async () => {
+  const orderButtonHTML = await orderButton()
+  spaceCart.innerHTML = orderButtonHTML
+
+})
+
 
 render()
 
