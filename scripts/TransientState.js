@@ -21,6 +21,12 @@ export const setFacility = (facilityId) => {
     document.dispatchEvent(new CustomEvent("facilityStateChanged"))
 }
 
+export const addMineralToCart = (mineralId) => {
+    state.selectedMineral = mineralId
+    console.log(state.selectedMineral)
+    document.dispatchEvent(new CustomEvent("mineralAdded"))
+}
+
 
 // export const purchaseMineral = () => {}
 
