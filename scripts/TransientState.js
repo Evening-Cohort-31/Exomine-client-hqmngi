@@ -1,7 +1,4 @@
 // transientState.js
-// ------------------------------------------------------
-// Holds the user's current selections during interaction
-// ------------------------------------------------------
 
 const transientState = {
   selectedGovernor: null,

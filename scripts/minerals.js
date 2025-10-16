@@ -1,7 +1,6 @@
 // minerals.js
 import { getState, setMineral } from "./transientState.js";
 
-// ---------------- FACILITY MINERALS ----------------
 export const FacilityMinerals = async () => {
   const { selectedFacility } = getState();
   if (!selectedFacility) {
