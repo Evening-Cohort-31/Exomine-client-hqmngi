@@ -1,40 +1,54 @@
-import { getFacilities, getGovernors } from "./database.js"
+// transientState.js
 
-const state = {
-    selectedGovernor: null,
-    selectedFacility: null,
-    selectedMineral: null
-}
+const transientState = {
+  selectedGovernor: null,
+  selectedFacility: null,
+  selectedMineral: null,
+};
 
+// Return a reference to the transient state
+export const getState = () => transientState;
+
+// ---------------- GOVERNOR ----------------
 export const setGovernor = async (governorId) => {
-    const response = await fetch(`http://localhost:8088/governors/${governorId}`)
-    const governor = await response.json()
-    state.selectedGovernor = governor
-    state.selectedFacility = null // reset facility and mineral when governor changes
-    state.selectedMineral = null
-    document.dispatchEvent(new CustomEvent("stateChanged"))
-}
+  if (!governorId) {
+    transientState.selectedGovernor = null;
+    document.dispatchEvent(new CustomEvent("stateChanged"));
+    return;
+  }
 
-export const setFacility = (facilityId) => {
-    state.selectedFacility = facilityId
-    state.selectedMineral = null // reset mineral when facility changes
-    document.dispatchEvent(new CustomEvent("facilityStateChanged"))
-}
+  const response = await fetch(`http://localhost:8088/governors/${governorId}`);
+  const governorObject = await response.json();
 
+  const previousGovernorId = transientState.selectedGovernor?.id;
+  if (previousGovernorId !== governorObject.id) {
+    transientState.selectedGovernor = governorObject;
+    transientState.selectedFacility = null;
+    transientState.selectedMineral = null;
 
-// export const purchaseMineral = () => {}
+    document.dispatchEvent(new CustomEvent("stateChanged"));
+  }
+};
 
-  
-// export const setMineral = (mineralId) => {
-//     state.selectedMineral = mineralId
-//     // document.dispatchEvent(new CustomEvent("stateChanged"))
-// }
+export const setFacility = async (facilityId) => {
+  if (!facilityId) {
+    transientState.selectedFacility = null;
+    document.dispatchEvent(new CustomEvent("stateChanged"));
+    return;
+  }
 
+  const response = await fetch(`http://localhost:8088/facilities/${facilityId}`);
+  const facilityObject = await response.json();
 
+  const previousFacilityId = transientState.selectedFacility?.id;
+  if (previousFacilityId !== facilityObject.id) {
+    transientState.selectedFacility = facilityObject;
+    transientState.selectedMineral = null;
 
-export const getState = () => state
+    document.dispatchEvent(new CustomEvent("stateChanged"));
+  }
+};
 
-
-
-// export const purchaseMineral = (colonyMinerals, facilityMinerals) => {
-    
+export const setMineral = (mineralId) => {
+  transientState.selectedMineral = Number(mineralId);
+};

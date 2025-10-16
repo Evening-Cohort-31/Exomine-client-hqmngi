@@ -1,23 +1,65 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exomine</title>
-</head>
-<body>
+  <head>
+    <meta charset="utf-8" />
+    <title>Solar System Mining Marketplace</title>
+    <link rel="stylesheet" href="./styles/main.css" />
+  </head>
+  <body>
+    <h1>Solar System Mining Marketplace</h1>
+
+    <div class="row">
+      <div>
+        <label for="govSelect">Choose a governor</label>
+        <div id="governors"></div>
+      </div>
+
+      <div>
+        <h2 id="colonyHeader">Colony Minerals</h2>
+        <div id="colonyMinerals"></div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div>
+        <label for="facilitySelect">Choose a facility</label>
+        <div id="facilities"></div>
+      </div>
+    </div>
+
+    <section class="row">
+      <article class="box">
+        <h2>Facility Minerals</h2>
+        <div id="facilityMinerals"></div>
+      </article>
+
+      <article class="box">
+        <h2>Space Cart</h2>
+        <div id="cart"></div>
+        <button id="purchaseBtn">Purchase Mineral</button>
+      </article>
+    </section>
+
+    <script type="module" src="./scripts/main.js"></script>
+  </body>
+</html>
+
+
+
+
+
+<!-- <body>
      <h1>Solar System Mining Marketplace</h1>
         <main id="container"></main>
-        <!-- Container for governors dropdown -->
-        <div id="governors"></div>
+        Container for governors dropdown -->
+        <!-- <div id="governors"></div> -->
         <!-- Container for facilities dropdown -->
-        <div id="facilities"></div>
+        <!-- <div id="facilities"></div> -->
 
         <div id="minerals"></div>
 
         <!-- Import the main JS module -->
-        <script type="module" src="./scripts/main.js"></script>
+        <!-- <script type="module" src="./scripts/main.js"></script> -->
 
-</body>
-</html>
+<!-- </body> -->
+

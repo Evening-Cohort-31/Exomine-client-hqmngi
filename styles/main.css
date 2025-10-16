@@ -1,0 +1,149 @@
+:root{
+  --ink:#3c3c3c;
+  --muted:#6b6b6b;
+  --purple:#6f42c1;
+  --purple-20:rgba(111,66,193,.25);
+  --teal:#1e8a9c;
+  --teal-20:rgba(30,138,156,.25);
+  --bg:#ffffff;
+  --card:#fbfbfd;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: "Georgia", "Times New Roman", serif;
+  color:var(--ink);
+  background:var(--bg);
+  line-height:1.45;
+  padding:24px;
+}
+
+/* Title */
+h1{
+  font-size: clamp(32px, 4vw, 56px);
+  font-weight: 800;
+  margin: 0 0 24px 0;
+  letter-spacing:.5px;
+}
+
+/* Section headings */
+h2{
+  font-size: clamp(18px, 2vw, 28px);
+  font-weight: 800;
+  margin: 0 0 10px 0;
+}
+
+label{
+  display:block;
+  font-size: 18px;
+  margin: 6px 0 6px;
+}
+
+select{
+  min-width: 240px;
+  font-size: 16px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #cfcfd6;
+  background: #fff;
+  color: var(--ink);
+  outline: none;
+  box-shadow: 0 1px 0 rgba(0,0,0,.03);
+}
+select:focus{
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px var(--teal-20);
+}
+
+.row{
+  display:grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+  margin-bottom: 28px;
+}
+
+.row:first-of-type{
+  grid-template-columns: 1.2fr 1fr;
+  align-items:start;
+}
+
+section.row{
+  grid-template-columns: 3fr 1.2fr;
+  align-items: stretch;
+}
+
+.box{
+  background: var(--card);
+  border-radius: 12px;
+  padding: 22px;
+  min-height: 260px;
+}
+
+#facilityMinerals{
+  min-height: 220px;
+}
+.box:first-child{
+  border: 2px dashed var(--purple);
+  box-shadow: inset 0 0 0 4px var(--purple-20);
+}
+.box:first-child > h2{
+  text-align:center;
+}
+
+/* Space Cart box dashed teal */
+.box + .box{
+  border: 2px dashed var(--teal);
+  box-shadow: inset 0 0 0 4px var(--teal-20);
+}
+.box + .box > h2{
+  text-align:center;
+  margin-bottom:14px;
+}
+
+#purchaseBtn{
+  font-size:16px;
+  padding:10px 14px;
+  border-radius:10px;
+  border:1px solid #c9c9d2;
+  background:#efeff6;
+  cursor:pointer;
+  transition: transform .04s ease, box-shadow .12s ease, background .12s ease;
+  display:block;
+  margin: 8px auto 0; /* center inside Space Cart */
+}
+#purchaseBtn:hover{
+  background:#e6e6f2;
+  box-shadow:0 2px 8px rgba(0,0,0,.10);
+}
+#purchaseBtn:active{
+  transform: translateY(1px);
+}
+
+#colonyMinerals{
+  font-size:16px;
+  color:var(--muted);
+}
+
+#facilityMinerals label{
+  display:inline-flex;
+  gap:10px;
+  align-items:center;
+  padding:6px 10px;
+  border-radius:8px;
+  margin: 4px 10px 4px 0;
+  background: #fff;
+  border: 1px solid #e8e8ee;
+}
+#facilityMinerals input[type="radio"]{
+  accent-color: var(--purple);
+}
+
+@media (max-width: 900px){
+  .row:first-of-type,
+  section.row{
+    grid-template-columns: 1fr;
+  }
+  #purchaseBtn{ margin-left: 0; }
+}

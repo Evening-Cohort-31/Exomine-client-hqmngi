@@ -1,26 +1,76 @@
-import { getState } from "./TransientState.js"
+// minerals.js
+import { getState, setMineral } from "./transientState.js";
 
+export const FacilityMinerals = async () => {
+  const { selectedFacility } = getState();
+  if (!selectedFacility) {
+    return "<p>Select a facility to view available minerals.</p>";
+  }
 
+  const [mineralsResponse, quantitiesResponse] = await Promise.all([
+    fetch("http://localhost:8088/minerals"),
+    fetch(`http://localhost:8088/facility_mineral_quantities?facility_id=${selectedFacility.id}`)
+  ]);
 
-export const displayMinerals = async () => {
+  const mineralsArray = await mineralsResponse.json();
+  const facilityMineralQuantities = await quantitiesResponse.json();
 
-    const state = getState()
-    const facilityID = parseInt(state.selectedFacility)
+  const mineralListHTML = facilityMineralQuantities
+    .filter((quantityRecord) => quantityRecord.quantity > 0)
+    .map((quantityRecord) => {
+      const mineralObject = mineralsArray.find(
+        (mineralItem) => mineralItem.id === quantityRecord.mineral_id
+      );
+      return `
+        <label>
+          <input type="radio" name="mineral" value="${mineralObject.id}">
+          ${mineralObject.name} — ${quantityRecord.quantity} tons
+        </label>
+      `;
+    })
+    .join("<br/>");
 
-    const allMinerals = await fetch ("http://localhost:8088/facilityMineralQuantities?_expand=facility&_expand=mineral")
-    const mineralOptions = await allMinerals.json()
+  const handleMineralSelection = (event) => {
+    if (event.target.name === "mineral") {
+      const mineralId = event.target.value;
+      setMineral(mineralId);
+    }
+  };
 
-    let html = ''
+  document.removeEventListener("change", handleMineralSelection);
+  document.addEventListener("change", handleMineralSelection);
 
-    const mineralDisplayHTML = mineralOptions
-        .filter(opt => parseInt(opt.facility.id) === facilityID)
-        .map(opt =>  `${opt.mineral.name} ${opt.quantity}`)
-        .join("")
-        
+  return mineralListHTML || "<p>No minerals available at this facility.</p>";
+};
 
-    html += mineralDisplayHTML
+export const ColonyMinerals = async () => {
+  const { selectedGovernor } = getState();
+  if (!selectedGovernor) {
+    return "<p>Select a governor to view their colony's mineral inventory.</p>";
+  }
 
-    return html
+  const colonyId = selectedGovernor.colonieId;
 
+  const [mineralsResponse, colonyQuantitiesResponse] = await Promise.all([
+    fetch("http://localhost:8088/minerals"),
+    fetch(`http://localhost:8088/colony_mineral_quantities?colony_id=${colonyId}`)
+  ]);
 
-}
+  const mineralsArray = await mineralsResponse.json();
+  const colonyMineralQuantities = await colonyQuantitiesResponse.json();
+
+  if (colonyMineralQuantities.length === 0) {
+    return `<p>${selectedGovernor.name}'s colony currently has no minerals stored.</p>`;
+  }
+
+  const colonyInventoryHTML = colonyMineralQuantities
+    .map((quantityRecord) => {
+      const mineralObject = mineralsArray.find(
+        (mineralItem) => mineralItem.id === quantityRecord.mineral_id
+      );
+      return `${mineralObject.name}: ${quantityRecord.quantity} tons`;
+    })
+    .join("<br/>");
+
+  return `<div>${colonyInventoryHTML}</div>`;
+};
