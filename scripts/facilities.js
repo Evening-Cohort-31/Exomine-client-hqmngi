@@ -1,34 +1,38 @@
-import { setFacility, getState } from "./TransientState.js"
+// facilities.js
+import { getState, setFacility } from "./transientState.js";
 
-//step 1: be able to handle facility selection changing by updating transient state
-const handleFacilityChange = (changeEvent) => {
-    if (changeEvent.target.name === "facilitySelect") {
-        const facilitySelection = changeEvent.target.value
-        setFacility(facilitySelection)
-    }
-}
+const handleFacilityChange = (event) => {
+  if (event.target.id === "facilitySelect") {
+    const facilityId = event.target.value;
+    setFacility(facilityId);
+  }
+};
 
-//step 2: build dropdown html
 export const FacilitiesDropdown = async () => {
-    //fetch data from api 
-    const response = await fetch("http://localhost:8088/facilities?_expand=colonie")
-    const facilityoptions = await response.json()
-    //listen for a change event and if there is one, envoke handleGovChange to update transient state.
-    document.addEventListener("change", handleFacilityChange)
-    
-    const currentState = getState()
-    //build dropdown selection using database for array of options
-    //facilityoptions.colonie.id
-    let html = facilityoptions
-        .filter(opt => opt.is_active === true)
-        .filter(opt => opt.colonieId === currentState.selectedGovernor?.colonieId)
-        .map(opt => {
-            return `<option value = "${opt.id}"> ${opt.name} </option>`
-            })
-        .join("")
+  const response = await fetch("http://localhost:8088/facilities");
+  const facilitiesArray = await response.json();
 
-    return `<label for ="facilitySelect"> Select a facility: </label>
-            <select id="facilitySelect" name ="facilitySelect">
-                ${html}
-            </select}`
-}
+  const currentState = getState();
+  const selectedFacility = currentState.selectedFacility;
+
+  document.removeEventListener("change", handleFacilityChange);
+  document.addEventListener("change", handleFacilityChange);
+
+  const optionsHTML = facilitiesArray
+    .filter((facilityObject) => facilityObject.is_active)
+    .map((facilityObject) => {
+      const selected =
+        selectedFacility?.id === facilityObject.id ? "selected" : "";
+      return `<option value="${facilityObject.id}" ${selected}>${facilityObject.name}</option>`;
+    })
+    .join("");
+
+  return `
+    <label for="facilitySelect">Select a Facility:</label>
+    <select id="facilitySelect" name="facilitySelect">
+      <option value="">Choose a facility</option>
+      ${optionsHTML}
+    </select>
+  `;
+};
+
